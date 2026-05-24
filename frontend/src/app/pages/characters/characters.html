@@ -1,10 +1,14 @@
+<!-- TEMPLATE -->
 <div class="characters-page">
 
   <header class="page-header">
-    <div>
+    <div class="page-header__text">
       <h1 class="page-title">Personajes</h1>
       @if (info() && !loading()) {
-        <p class="page-count">{{ info()!.count | number }} resultados</p>
+        <p class="page-count" aria-live="polite">
+          <span class="page-count__num">{{ info()!.count | number }}</span>
+          resultados
+        </p>
       }
     </div>
   </header>
@@ -16,49 +20,58 @@
   />
 
   @if (loading()) {
-    <div class="loader">
-      <div class="loader__ring"></div>
+    <div class="loader" aria-label="Cargando personajes" role="status">
+      <p-progressSpinner
+        styleClass="loader__spinner"
+        strokeWidth="2.5"
+        animationDuration=".7s"
+      />
       <p class="loader__text">Cargando personajes...</p>
     </div>
   } @else if (error()) {
-    <div class="empty-state">
-      <span class="empty-state__icon">🔭</span>
+    <div class="empty-state" role="alert">
+      <div class="empty-state__icon-wrap">
+        <i class="pi pi-eye-slash empty-state__icon"></i>
+      </div>
       <p class="empty-state__title">Sin resultados</p>
       <p class="empty-state__desc">{{ error() }}</p>
     </div>
   } @else {
-    <div class="characters-grid">
-      @for (character of characters(); track character.id) {
-        <app-character-card [character]="character" />
+    <div class="characters-grid" role="list">
+      @for (character of characters(); track character.id; let i = $index) {
+        <div role="listitem" [style.--i]="i">
+          <app-character-card [character]="character" />
+        </div>
       }
     </div>
 
-    <nav class="pagination" aria-label="Paginación">
-      <button
-        class="pagination__btn"
+    <nav class="pagination" aria-label="Paginación de personajes">
+      <p-button
+        icon="pi pi-chevron-left"
+        label="Anterior"
         [disabled]="!hasPrev()"
-        (click)="goToPage(currentPage() - 1)"
-        aria-label="Página anterior"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        Anterior
-      </button>
+        (onClick)="goToPage(currentPage() - 1)"
+        styleClass="pagination__btn"
+        size="small"
+        [attr.aria-label]="'Ir a página ' + (currentPage() - 1)"
+      />
 
-      <span class="pagination__info">
+      <span class="pagination__info" aria-label="Página {{ currentPage() }} de {{ totalPages() }}">
         <span class="pagination__current">{{ currentPage() }}</span>
-        <span class="pagination__sep">/</span>
+        <span class="pagination__sep" aria-hidden="true">/</span>
         <span class="pagination__total">{{ totalPages() }}</span>
       </span>
 
-      <button
-        class="pagination__btn"
+      <p-button
+        icon="pi pi-chevron-right"
+        iconPos="right"
+        label="Siguiente"
         [disabled]="!hasNext()"
-        (click)="goToPage(currentPage() + 1)"
-        aria-label="Página siguiente"
-      >
-        Siguiente
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
+        (onClick)="goToPage(currentPage() + 1)"
+        styleClass="pagination__btn"
+        size="small"
+        [attr.aria-label]="'Ir a página ' + (currentPage() + 1)"
+      />
     </nav>
   }
 

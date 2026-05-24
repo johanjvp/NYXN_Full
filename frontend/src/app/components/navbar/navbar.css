@@ -1,76 +1,106 @@
+/* Paleta de variables */
+:host {
+  --c-bg: #08111a;
+  --c-border: #1a3a2a;
+  --c-teal-deep: #04342C;
+  --c-teal-mid: #0F6E56;
+  --c-teal-soft: #1D9E75;
+  --c-teal-light: #5DCAA5;
+  --c-teal-pale: #9FE1CB;
+}
+
 .navbar {
+  background: var(--c-bg);
+  border-bottom: 1px solid var(--c-border);
+  padding: 0 1.5rem;
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: rgba(7, 8, 15, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 1000;
 }
 
 .navbar__inner {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Brand */
 .navbar__brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 10px;
 }
 
-.navbar__monogram {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #97ce4c 0%, #6aaa1e 100%);
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #07080f;
-  letter-spacing: 0.02em;
-  flex-shrink: 0;
-  box-shadow: 0 0 16px rgba(151, 206, 76, 0.25);
+::ng-deep .navbar__avatar {
+  background: #0f2a1a !important;
+  border: 1.5px solid var(--c-teal-soft) !important;
+  color: var(--c-teal-light) !important;
+  font-weight: 700 !important;
+  font-size: 10px !important;
+  letter-spacing: 0.04em !important;
 }
 
 .navbar__text {
   display: flex;
   flex-direction: column;
-  gap: 0.05rem;
+  gap: 1px;
 }
 
 .navbar__title {
-  font-size: 1rem;
+  font-size: 15px;
   font-weight: 700;
-  color: #f1f5f9;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  color: var(--c-teal-pale);
+  letter-spacing: 0.04em;
 }
 
 .navbar__tagline {
-  font-size: 0.65rem;
-  color: #8b95a1;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-size: 10px;
+  color: var(--c-teal-mid);
   text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-.navbar__quote {
-  font-size: 0.75rem;
-  color: #97ce4c;
-  font-style: italic;
-  opacity: 0.7;
-  letter-spacing: 0.02em;
+/* Quote */
+::ng-deep .navbar__quote-tag {
+  background: var(--c-teal-deep) !important;
+  color: var(--c-teal-mid) !important;
+  border: 1px solid var(--c-teal-mid) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.04em !important;
 }
 
-@media (max-width: 480px) {
-  .navbar__quote { display: none; }
-  .navbar__inner { padding: 0 1rem; }
+/* Actions */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+::ng-deep .navbar__icon-btn.p-button {
+  background: transparent !important;
+  border: 1px solid var(--c-border) !important;
+  border-radius: 8px !important;
+  color: var(--c-teal-mid) !important;
+  width: 34px !important;
+  height: 34px !important;
+  transition: background 0.15s, border-color 0.15s, color 0.15s !important;
+}
+
+::ng-deep .navbar__icon-btn.p-button:hover {
+  background: #0d1f17 !important;
+  border-color: var(--c-teal-soft) !important;
+  color: var(--c-teal-light) !important;
+}
+
+::ng-deep .navbar__badge {
+  background: #0f2a1a !important;
+  color: var(--c-teal-light) !important;
+  border: 1px solid var(--c-teal-mid) !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
 }

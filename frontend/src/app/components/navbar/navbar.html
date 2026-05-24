@@ -1,12 +1,25 @@
 <nav class="navbar">
   <div class="navbar__inner">
     <div class="navbar__brand">
-      <span class="navbar__monogram">R&amp;M</span>
+      <p-avatar
+        label="R&M"
+        styleClass="navbar__avatar"
+        shape="circle"
+      />
       <div class="navbar__text">
         <span class="navbar__title">Explorer</span>
         <span class="navbar__tagline">Rick &amp; Morty Universe</span>
       </div>
     </div>
-    <span class="navbar__quote">Wubba Lubba Dub Dub!</span>
+
+    <div class="navbar__center">
+      <p-tag
+        value="Wubba Lubba Dub Dub!"
+        styleClass="navbar__quote-tag"
+        [rounded]="true"
+      />
+    </div>
+
+
   </div>
 </nav>

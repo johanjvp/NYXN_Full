@@ -1,16 +1,28 @@
 <div class="search-bar">
-  <svg class="search-bar__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="11" cy="11" r="8"/>
-    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-  </svg>
-  <input
-    class="search-bar__input"
-    type="text"
-    [placeholder]="placeholder()"
-    [value]="value()"
-    (input)="onInput($event)"
-    autocomplete="off"
-    aria-label="Buscar personaje"
-    spellcheck="false"
-  />
+  <p-iconfield styleClass="search-bar__field">
+    <p-inputicon styleClass="pi pi-search search-bar__icon" />
+    <input
+      pInputText
+      class="search-bar__input"
+      type="text"
+      [placeholder]="placeholder()"
+      [value]="value()"
+      (input)="onInput($event)"
+      autocomplete="off"
+      aria-label="Buscar personaje"
+      spellcheck="false"
+    />
+    @if (value()) {
+      <p-button
+        icon="pi pi-times"
+        [rounded]="true"
+        [text]="true"
+        size="small"
+        styleClass="search-bar__clear"
+        (onClick)="onClear()"
+        aria-label="Limpiar búsqueda"
+      />
+    }
+  </p-iconfield>
+  <br>
 </div>

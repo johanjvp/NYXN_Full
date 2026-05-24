@@ -1,32 +1,49 @@
-<article class="card">
-  <div class="card__media">
-    <img
-      class="card__image"
-      [src]="character().image"
-      [alt]="character().name"
-      loading="lazy"
-    />
-    <div class="card__overlay"></div>
-    <span class="card__badge" [class]="statusClass()">
-      <span class="card__badge-dot"></span>
-      {{ character().status }}
-    </span>
-  </div>
-
-  <div class="card__body">
-    <h3 class="card__name">{{ character().name }}</h3>
-    <p class="card__species">{{ character().species }}</p>
-
-    <div class="card__divider"></div>
-
-    <div class="card__info">
-      <span class="card__info-label">Ubicación</span>
-      <span class="card__info-value">{{ character().location.name }}</span>
+<p-card styleClass="character-card">
+  <ng-template #header>
+    <div class="card__media">
+      <img
+        class="card__image"
+        [src]="character().image"
+        [alt]="character().name"
+        loading="lazy"
+      />
+      <p-tag
+        [value]="character().status"
+        [styleClass]="'card__status-tag ' + statusClass()"
+        [rounded]="true"
+      >
+        <ng-template #content>
+          <span class="card__badge-dot"></span>
+          {{ character().status }}
+        </ng-template>
+      </p-tag>
     </div>
+  </ng-template>
 
-    <div class="card__info">
-      <span class="card__info-label">Origen</span>
-      <span class="card__info-value">{{ character().origin.name }}</span>
+  <ng-template #content>
+    <div class="card__body">
+      <h3 class="card__name">{{ character().name }}</h3>
+      <p-tag
+        [value]="character().species"
+        styleClass="card__species-tag"
+        [rounded]="true"
+      />
+
+      <p-divider styleClass="card__divider" />
+
+      <div class="card__info">
+        <span class="card__info-label">
+          <i class="pi pi-map-marker"></i> Ubicación
+        </span>
+        <span class="card__info-value">{{ character().location.name }}</span>
+      </div>
+
+      <div class="card__info">
+        <span class="card__info-label">
+          <i class="pi pi-globe"></i> Origen
+        </span>
+        <span class="card__info-value">{{ character().origin.name }}</span>
+      </div>
     </div>
-  </div>
-</article>
+  </ng-template>
+</p-card>

@@ -1,44 +1,62 @@
+:host {
+  --c-bg: #08111a;
+  --c-border: #1a3a2a;
+  --c-teal-mid: #0F6E56;
+  --c-teal-soft: #1D9E75;
+  --c-teal-light: #5DCAA5;
+  --c-teal-pale: #9FE1CB;
+}
+
 .search-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  max-width: 560px;
-  margin: 0 auto 2.5rem;
-}
-
-.search-bar__icon {
-  position: absolute;
-  left: 1.125rem;
-  color: #3d4754;
-  pointer-events: none;
-  transition: color 0.2s;
-  flex-shrink: 0;
-}
-
-.search-bar:focus-within .search-bar__icon {
-  color: #97ce4c;
-}
-
-.search-bar__input {
   width: 100%;
-  padding: 0.875rem 1.25rem 0.875rem 2.875rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-  color: #f1f5f9;
-  font-size: 0.9375rem;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-  backdrop-filter: blur(8px);
+  max-width: 480px;
 }
 
-.search-bar__input::placeholder {
-  color: #3d4754;
+::ng-deep .search-bar__field {
+  width: 100% !important;
 }
 
-.search-bar__input:focus {
-  border-color: rgba(151, 206, 76, 0.4);
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 0 0 4px rgba(151, 206, 76, 0.08), 0 1px 3px rgba(0,0,0,0.3);
+::ng-deep .search-bar__field .p-inputtext {
+  width: 100% !important;
+  background: #0b1820 !important;
+  border: 1px solid var(--c-border) !important;
+  border-radius: 8px !important;
+  color: var(--c-teal-pale) !important;
+  padding: 0.55rem 2.5rem 0.55rem 2.25rem !important;
+  font-size: 0.875rem !important;
+  transition: border-color 0.15s !important;
+}
+
+::ng-deep .search-bar__field .p-inputtext::placeholder {
+  color: var(--c-teal-mid) !important;
+}
+
+::ng-deep .search-bar__field .p-inputtext:hover {
+  border-color: var(--c-teal-mid) !important;
+}
+
+::ng-deep .search-bar__field .p-inputtext:focus {
+  border-color: var(--c-teal-soft) !important;
+  box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.12) !important;
+  outline: none !important;
+}
+
+::ng-deep .search-bar__icon {
+  color: var(--c-teal-mid) !important;
+  font-size: 0.875rem !important;
+}
+
+::ng-deep .search-bar__clear.p-button {
+  position: absolute !important;
+  right: 6px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 26px !important;
+  height: 26px !important;
+  color: var(--c-teal-mid) !important;
+  transition: color 0.15s !important;
+}
+
+::ng-deep .search-bar__clear.p-button:hover {
+  color: var(--c-teal-light) !important;
 }

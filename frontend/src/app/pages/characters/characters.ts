@@ -2,6 +2,8 @@ import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { debounceTime, distinctUntilChanged, Subject, switchMap, catchError, of, tap, finalize } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ButtonModule } from 'primeng/button';
 import { CharacterService } from '../../services/character.service';
 import { Character, ApiInfo } from '../../models/character.model';
 import { SearchBar } from '../../components/search-bar/search-bar';
@@ -9,7 +11,7 @@ import { CharacterCard } from '../../components/character-card/character-card';
 
 @Component({
   selector: 'app-characters',
-  imports: [SearchBar, CharacterCard, DecimalPipe],
+  imports: [SearchBar, CharacterCard, DecimalPipe, ProgressSpinnerModule, ButtonModule],
   templateUrl: './characters.html',
   styleUrl: './characters.css',
 })
