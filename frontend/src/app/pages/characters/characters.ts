@@ -1,4 +1,5 @@
 import { Component, OnInit, inject, signal, computed } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import { debounceTime, distinctUntilChanged, Subject, switchMap, catchError, of, tap, finalize } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CharacterService } from '../../services/character.service';
@@ -8,7 +9,7 @@ import { CharacterCard } from '../../components/character-card/character-card';
 
 @Component({
   selector: 'app-characters',
-  imports: [SearchBar, CharacterCard],
+  imports: [SearchBar, CharacterCard, DecimalPipe],
   templateUrl: './characters.html',
   styleUrl: './characters.css',
 })

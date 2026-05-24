@@ -1,4 +1,14 @@
 <div class="characters-page">
+
+  <header class="page-header">
+    <div>
+      <h1 class="page-title">Personajes</h1>
+      @if (info() && !loading()) {
+        <p class="page-count">{{ info()!.count | number }} resultados</p>
+      }
+    </div>
+  </header>
+
   <app-search-bar
     placeholder="Buscar por nombre..."
     [value]="searchTerm()"
@@ -6,9 +16,16 @@
   />
 
   @if (loading()) {
-    <div class="state-message">Cargando personajes...</div>
+    <div class="loader">
+      <div class="loader__ring"></div>
+      <p class="loader__text">Cargando personajes...</p>
+    </div>
   } @else if (error()) {
-    <div class="state-message state-message--error">{{ error() }}</div>
+    <div class="empty-state">
+      <span class="empty-state__icon">🔭</span>
+      <p class="empty-state__title">Sin resultados</p>
+      <p class="empty-state__desc">{{ error() }}</p>
+    </div>
   } @else {
     <div class="characters-grid">
       @for (character of characters(); track character.id) {
@@ -16,14 +33,33 @@
       }
     </div>
 
-    <div class="pagination">
-      <button class="pagination__btn" [disabled]="!hasPrev()" (click)="goToPage(currentPage() - 1)">
-        ← Anterior
+    <nav class="pagination" aria-label="Paginación">
+      <button
+        class="pagination__btn"
+        [disabled]="!hasPrev()"
+        (click)="goToPage(currentPage() - 1)"
+        aria-label="Página anterior"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Anterior
       </button>
-      <span class="pagination__info">Página {{ currentPage() }} de {{ totalPages() }}</span>
-      <button class="pagination__btn" [disabled]="!hasNext()" (click)="goToPage(currentPage() + 1)">
-        Siguiente →
+
+      <span class="pagination__info">
+        <span class="pagination__current">{{ currentPage() }}</span>
+        <span class="pagination__sep">/</span>
+        <span class="pagination__total">{{ totalPages() }}</span>
+      </span>
+
+      <button
+        class="pagination__btn"
+        [disabled]="!hasNext()"
+        (click)="goToPage(currentPage() + 1)"
+        aria-label="Página siguiente"
+      >
+        Siguiente
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
-    </div>
+    </nav>
   }
+
 </div>
