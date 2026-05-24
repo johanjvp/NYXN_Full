@@ -3,10 +3,12 @@ import { debounceTime, distinctUntilChanged, Subject, switchMap, catchError, of,
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CharacterService } from '../../services/character.service';
 import { Character, ApiInfo } from '../../models/character.model';
+import { SearchBar } from '../../components/search-bar/search-bar';
+import { CharacterCard } from '../../components/character-card/character-card';
 
 @Component({
   selector: 'app-characters',
-  imports: [],
+  imports: [SearchBar, CharacterCard],
   templateUrl: './characters.html',
   styleUrl: './characters.css',
 })

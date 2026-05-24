@@ -1,0 +1,26 @@
+<article class="card">
+  <img
+    class="card__image"
+    [src]="character().image"
+    [alt]="character().name"
+    loading="lazy"
+  />
+  <div class="card__body">
+    <h3 class="card__name">{{ character().name }}</h3>
+
+    <div class="card__status">
+      <span class="status__dot" [class]="statusClass()"></span>
+      <span class="status__label">{{ character().status }} — {{ character().species }}</span>
+    </div>
+
+    <div class="card__info">
+      <p class="card__info-label">Última ubicación</p>
+      <p class="card__info-value">{{ character().location.name }}</p>
+    </div>
+
+    <div class="card__info">
+      <p class="card__info-label">Origen</p>
+      <p class="card__info-value">{{ character().origin.name }}</p>
+    </div>
+  </div>
+</article>

@@ -1,1 +1,29 @@
-<p>characters works</p>
+<div class="characters-page">
+  <app-search-bar
+    placeholder="Buscar por nombre..."
+    [value]="searchTerm()"
+    (searched)="onSearch($event)"
+  />
+
+  @if (loading()) {
+    <div class="state-message">Cargando personajes...</div>
+  } @else if (error()) {
+    <div class="state-message state-message--error">{{ error() }}</div>
+  } @else {
+    <div class="characters-grid">
+      @for (character of characters(); track character.id) {
+        <app-character-card [character]="character" />
+      }
+    </div>
+
+    <div class="pagination">
+      <button class="pagination__btn" [disabled]="!hasPrev()" (click)="goToPage(currentPage() - 1)">
+        ← Anterior
+      </button>
+      <span class="pagination__info">Página {{ currentPage() }} de {{ totalPages() }}</span>
+      <button class="pagination__btn" [disabled]="!hasNext()" (click)="goToPage(currentPage() + 1)">
+        Siguiente →
+      </button>
+    </div>
+  }
+</div>
