@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(90deg, #16213e 0%, #0f3460 100%);
+  border-bottom: 3px solid #97ce4c;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.navbar__logo {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.navbar__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #97ce4c;
+  letter-spacing: 0.03em;
+}
+
+.navbar__subtitle {
+  font-size: 0.8rem;
+  color: #00b5cc;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+@media (max-width: 480px) {
+  .navbar__subtitle { display: none; }
+  .navbar { padding: 0.75rem 1rem; }
+}
